@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, ScrollView, Alert } from 'react-native';
 import {useNavigation } from '@react-navigation/native'
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -47,22 +47,6 @@ export const Home = () => {
     setDataList(data)
   }
 
-  const renderItem = ({item, index}) => {
-    return (
-      <View key={index} style={styles.itemContainer}>
-
-      <View style={styles.itemBody}>
-        <Text style={styles.itemName}>{item.name}</Text>
-      </View>
-
-      <View style={
-        styles.itemStatus}>
-      <Text style={styles.itemStatus}>{item.status}</Text>
-      </View>
-
-      </View>
-    )
-  }
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -96,17 +80,29 @@ export const Home = () => {
                                        decelerationRate={0}
                                        snapToInterval={width - 60}
                                        snapToAlignment={"center"}>
-          <Image style={styles.fitImage}
-            source={require("../../assets/fit.png")}
-            resizeMode="cover"
-            onPress={ () => navigation.navigate('Highlight')}
-          />
-          <Text style={styles.textCard}>My latest session</Text>
+        <View style={{marginHorizontal: 10}}>
+        <TouchableOpacity style={styles.fitImage} 
+                            onPress={ () => Alert.alert('Maintenance')}>
           <Image style={styles.fitImage}
             source={require("../../assets/fit.png")}
             resizeMode="cover"
           />
+          </TouchableOpacity>
           <Text style={styles.textCard}>My latest session</Text>
+          <Text style={{fontSize: 10, color: '#AEA59B'}}>video preview</Text>
+        </View>
+        <View>
+        <TouchableOpacity style={styles.fitImage} 
+                            onPress={ () => navigation.navigate('Highlight')}>
+          <Image style={styles.fitImage}
+            source={require("../../assets/fit.png")}
+            resizeMode="cover"
+          />
+          </TouchableOpacity>
+          <Text style={styles.textCard}>Instagram Post</Text>
+          <Text style={{fontSize: 10, color: '#AEA59B'}}>@accountname</Text>
+        </View>
+        
       </ScrollView>
       <Text style={styles.titlePage}>Recomendations</Text>
       <Text style={styles.subtitlePage}>Here´s what other people have to say about me</Text>
@@ -210,7 +206,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: 'center',
     height:'100%',
-    width:'100%'
+    width:'100%',
   },
   fitImage: {
     flex: 1,
@@ -280,7 +276,7 @@ const styles = StyleSheet.create({
   secondPage: {
     flex: 1,
     marginLeft: 20,
-    marginTop: 60
+    marginTop: 60,
   },
   textCard: {
     marginTop: 10,
@@ -292,7 +288,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: "center", 
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#FAF9F8",
     borderRadius: 30, 
     overflow: "hidden",
     justifyContent: 'space-around',
@@ -325,7 +321,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   btnTabActive: {
-    backgroundColor: 'white'
+    backgroundColor: '#FAF9F8'
   }, 
   textTabActive: {
     color: '#D17F5C'

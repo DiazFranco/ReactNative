@@ -1,55 +1,56 @@
 import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, FlatList, View, TouchableOpacity, Image } from 'react-native';
+import {useNavigation } from '@react-navigation/native';
 // import { UpdateIcon } from '@heroicons/react/solid';
 
 // export const iconUpload = (<UpdateIcon className="w-8 h-8 text-orange-50"/>)
 
-export const iconUpload = <Image style={{width: 40, height: 40}} source={require("../../assets/upload.png")}/>
-export const iconInstagram = <Image style={{width: 40, height: 40}} source={require("../../assets/instagram.png")}/>
-export const iconFacebook = <Image style={{width: 40, height: 40}} source={require("../../assets/facebook.png")}/>
-export const iconYoutube = <Image style={{width: 40, height: 40}} source={require("../../assets/youtube.png")}/>
 
 const DATA = [
     {
       title: 'Upload from phone',
-      icon: iconUpload
+      icon: require("../../assets/upload.png"),
+      id: 1
     },
     {
       title: 'Add from your instagram',
-      icon: iconInstagram
+      icon: require("../../assets/instagram.png"),
+      id: 2
     },
     {
       title: 'Add from your facebook',
-      icon: iconFacebook
+      icon: require("../../assets/facebook.png"),
+      id: 3
     },
     {
       title: 'Add from your youtube',
-      icon: iconYoutube  
+      icon: require("../../assets/youtube.png"),
+      id: 4  
     }
   ];
 
 
-  const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-        <Text style={[styles.title, textColor]}>{item.icon}{item.title}</Text>
-  </TouchableOpacity>
-  );
-
 export const Highlight = () => {
+    const navigation = useNavigation();
     const [selectedId, setSelectedId] = useState(null);
-
+    const handleNavegation = (id) => {
+      if (id === 1) {
+        navigation.navigate('ImageDescription')
+      } else {
+        navigation.navigate('Post')
+      }
+    }
     const renderItem = ({ item }) => {
     const backgroundColor = 'white';
     const color = 'black';
     return (
-        <Item
-          item={item}
-          onPress={() => setSelectedId(item.id)}
-          backgroundColor={{ backgroundColor }}
-          textColor={{ color }}
+      <TouchableOpacity onPress={ () => handleNavegation(item.id)} style={[styles.item, { backgroundColor: 'white' }]}>
+        <Image source={item.icon}
         />
-      );
-    };
+        <Text style={styles.title}>{item.title}</Text>
+      </TouchableOpacity>
+    );
+  };
 
     return (
             <SafeAreaView style={styles.container}>
@@ -71,16 +72,12 @@ export const Highlight = () => {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        top: 95,
-        left: 24,
         backgroundColor: '#FAF9F8',
         flex: 1,
-        flex: 50
     },
     header: {
-        flex: 1,
-        alignItems: 'flex-start'
+      marginTop: 40,
+      marginLeft: 50
     },
     titlePage: {
         width: 293,
@@ -96,8 +93,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 17,
-        height: 50,
-        marginBottom: 5
+        height: 100,
+        marginTop: 20
     },
     item: {
         backgroundColor: "white",
@@ -108,7 +105,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ECEAEA',
         borderBottomWidth: 1,
         width:324,
-        height: 84
+        height: 100,
+        flexDirection: 'row'
       },
     body: {
         flex: 1,

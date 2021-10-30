@@ -10,7 +10,7 @@ export const ImageDescription = () => {
         <ScrollView>
         <View>
             <Text style={styles.titlePage}>Add a new Higlight</Text>
-            <Text style={styles.title}>Choose a video or image</Text>
+            <Text style={styles.title}>Choose a video or image:</Text>
         </View>
         <SafeAreaView style={styles.image}>
         <Image
@@ -37,7 +37,7 @@ export const ImageDescription = () => {
           style={styles.fabLocation}
             >
           <View style={styles.button}>
-            <Text style={styles.textButton}>Save Changes</Text>
+            <Text style={styles.textButton}>Save Higlight</Text>
           </View>
             </TouchableOpacity>
          </View>
@@ -50,10 +50,9 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#FAF9F8',
         flex: 1,
-        flex: 50,
     },
     titlePage: {
-        marginTop: 80,
+        marginTop: 30,
         marginLeft: 24,
         width: 293,
         height: 32,
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
         width: 305,
         height: 46,
         justifyContent: "center",
-        marginLeft: 32
+        marginLeft: 32,
       },
     textButton: {
         color: "white",
