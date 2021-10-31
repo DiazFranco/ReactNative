@@ -1,10 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from '../components/Home';
+import { Home } from '../screens/Home';
 import { Highlight } from '../screens/Highlight';
 import { ImageDescription } from '../screens/ImageDescription';
 import { Post } from '../screens/Post';
-import { NavigationContainer } from '@react-navigation/native';
 
 
 const Stack = createStackNavigator()

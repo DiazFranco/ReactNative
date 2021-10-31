@@ -1,7 +1,12 @@
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, ScrollView, Alert } from 'react-native';
-import {useNavigation } from '@react-navigation/native'
+import {NavigationContainer, useNavigation } from '@react-navigation/native'
 import { FlatList } from 'react-native-gesture-handler';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Work } from '../components/Work';
+import { Education } from '../components/Education';
+
+const Tab = createMaterialTopTabNavigator();
 
 const { width } = Dimensions.get('window');
 
@@ -160,35 +165,10 @@ export const Home = () => {
     </View>
     <View style={{borderTopRightRadius: 60, borderBottomRightRadius: 60, borderRadius: 20}}>
     <View style={styles.listTab}>
-      {
-        listTab.map(e => (
-          <TouchableOpacity style={[styles.btnTab, status === e.status && styles.btnTabActive]}
-          onPress={() => setStatusFilter(e.status)}
-          >
-          <Text style={styles.textTab, status === e.status && styles.textTabActive}>{e.status}</Text>
-          </TouchableOpacity>
-        ))
-      }      
-    </View>
-    <View style={styles.experience}>
-    <Image
-              source={require("../../assets/tiempo.png")}
-              style={{
-                height: 239,
-                width: 10,
-                marginLeft: 10
-              }}
-            />
-      <View style={styles.roleDescription}>
-        <Text style={styles.itemName}> Role Name</Text>
-        <Text style={styles.itemStatus}>Company Name</Text>
-        <Text style={styles.itemName}> Role Name</Text>
-        <Text style={styles.itemStatus}>Company Name</Text> 
-        <Text style={styles.itemName}> Role Name</Text>
-        <Text style={styles.itemStatus}>Company Name</Text> 
-        <Text style={styles.itemName}> Role Name</Text>
-        <Text style={styles.itemStatus}>Company Name</Text>
-      </View>
+    <Tab.Navigator>
+        <Tab.Screen name="Work Experiencie" component={Work} />
+        <Tab.Screen name="Education & Certification" component={Education} /> 
+    </Tab.Navigator>
     </View>
     </View>
     {/* <FlatList
@@ -305,10 +285,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   listTab: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    marginBottom: 40,
-    marginTop: 20
+    width: '100%',
+    height: 500
   },
   btnTab: {
     width: 120,
@@ -329,29 +307,6 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     paddingVertical: 10
-  },
-  itemName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginLeft: 10,
-  },
-  itemStatus: {
-    paddingHorizontal: 6,
-    justifyContent: 'flex-start',
-    right: 12,
-    marginLeft: 23,
-    marginBottom: 20
-  },
-  experience: {
-    width: '50%',
-    flex: 1,
-    flexDirection: 'row',
-    marginLeft: 25
-  },
-  roleDescription: {
-    flex: 1,
-    flexDirection: 'column',
-    marginTop: -15
   }
 });
 
