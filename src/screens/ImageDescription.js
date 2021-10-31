@@ -12,11 +12,11 @@ export const ImageDescription = () => {
             <Text style={styles.titlePage}>Add a new Higlight</Text>
             <Text style={styles.title}>Choose a video or image:</Text>
         </View>
-        <SafeAreaView style={styles.image}>
+        <View style={styles.image}>
         <Image
             source={require("../../assets/fit.png")}
             />
-        </SafeAreaView>
+        </View>
           <View style={styles.section}>
             <Text style={styles.subtitle}>Add a Description</Text>
             <TextInput
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
         height: 46,
         justifyContent: "center",
         marginLeft: 32,
+        marginBottom: 20
       },
     textButton: {
         color: "white",

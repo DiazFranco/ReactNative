@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   texts: {
     flex: 1,
     marginLeft: 20,
-    marginTop: 60
+    marginTop: 30
   },
   title: {
     color: "#213638",
